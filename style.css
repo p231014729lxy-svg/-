@@ -892,3 +892,102 @@ body.theme-night { --bg-sky-top: #240046; --panel-shadow: #7B2CBF; }
 .btn-music:hover { transform: scale(1.1); }
 .btn-music:active { transform: scale(0.95); box-shadow: 0 2px 0 var(--pop-dark); }
 
+/* --- Mobile Touch Controls Refined --- */
+.touch-controls {
+    display: flex; /* Always show for testing/preference */
+    position: absolute;
+    bottom: 40px; /* More space from bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90%;
+    max-width: 600px;
+    justify-content: space-between; /* Spread controls to sides */
+    pointer-events: none;
+    z-index: 50;
+    align-items: flex-end;
+}
+
+.touch-btn {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.2); /* Glassy background */
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    touch-action: none;
+    backdrop-filter: blur(10px); /* Stronger blur */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15), inset 0 0 10px rgba(255,255,255,0.1);
+    transition: all 0.1s;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.touch-btn:active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0.9);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* D-Pad Container (Left Side) */
+.touch-dpad {
+    display: flex;
+    gap: 20px;
+    background: rgba(43, 45, 66, 0.3); /* Dark translucent capsule */
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Action Button (Right Side) */
+.touch-action {
+    display: flex;
+}
+
+.btn-up {
+    width: 90px; /* Distinctive large jump button */
+    height: 90px;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.6), rgba(67, 97, 238, 0.6)); /* Blue gradient */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+}
+
+.btn-up:active {
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.8), rgba(67, 97, 238, 0.8));
+}
+
+/* Media Query for Mobile - Refined */
+@media (max-width: 1024px) {
+    .game-viewport {
+        width: 100%;
+        height: 50vh; /* Adjust height for mobile */
+        border-width: 2px;
+    }
+
+    .game-hud {
+        width: 95%;
+        font-size: 0.8rem;
+    }
+
+    /* Adjust lobby for mobile */
+    .lobby-content {
+        flex-direction: column;
+    }
+    
+    .game-top-bar {
+        padding: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .status-badge {
+        font-size: 0.9rem;
+    }
+}
+

@@ -529,6 +529,37 @@ class PlatformerGame {
             e.preventDefault();
             this.keys.up = false;
         });
+
+        // Virtual Controls Setup
+        this.setupVirtualControls();
+    }
+
+    setupVirtualControls() {
+        const btnLeft = document.getElementById('btn-left');
+        const btnRight = document.getElementById('btn-right');
+        const btnUp = document.getElementById('btn-up');
+
+        const handleTouch = (key, isDown) => {
+            this.keys[key] = isDown;
+        };
+
+        // Left
+        btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); handleTouch('left', true); });
+        btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); handleTouch('left', false); });
+        btnLeft.addEventListener('mousedown', (e) => { handleTouch('left', true); });
+        btnLeft.addEventListener('mouseup', (e) => { handleTouch('left', false); });
+
+        // Right
+        btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); handleTouch('right', true); });
+        btnRight.addEventListener('touchend', (e) => { e.preventDefault(); handleTouch('right', false); });
+        btnRight.addEventListener('mousedown', (e) => { handleTouch('right', true); });
+        btnRight.addEventListener('mouseup', (e) => { handleTouch('right', false); });
+
+        // Jump
+        btnUp.addEventListener('touchstart', (e) => { e.preventDefault(); handleTouch('up', true); });
+        btnUp.addEventListener('touchend', (e) => { e.preventDefault(); handleTouch('up', false); });
+        btnUp.addEventListener('mousedown', (e) => { handleTouch('up', true); });
+        btnUp.addEventListener('mouseup', (e) => { handleTouch('up', false); });
     }
 
     handleInput(e, isDown) {
@@ -553,7 +584,7 @@ class PlatformerGame {
         this.moodLost = 0;
         
         // Buffs application
-        this.speed = this.baseSpeed * buffs.speed;
+        this.speed = (this.baseSpeed * buffs.speed) * 0.8; // Reduce global speed by 20% for easier control
         this.knowledgeMultiplier = buffs.knowledgeRate;
 
         // Player
